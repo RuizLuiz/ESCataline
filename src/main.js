@@ -40,6 +40,12 @@ const donetodos = todos.filter(function (todo){
 
 console.log(donetodos)
 
+//arrow function in line
+
+const doneTodoArrow = todos.filter((todo) => todo.done)
+
+console.log(doneTodoArrow)
+
 const find = todos.find(function (todo) {
     return todo.text === 'dobrar roupa'
 })
@@ -61,3 +67,44 @@ const hasFusca = cars.some(function (car){
 })
 
 console.log(hasFusca)
+
+// default value for a function
+
+function sayHello(name = 'fulano'){
+    console.log('Olá ' + name )
+}
+
+sayHello()
+
+const sayhello = (name = 'fulano') => console.log('Olá ' + name)
+
+sayhello()
+
+// Template string
+
+const showProduct = (product,price) =>{
+    console.log('O valor de ' + product + ' é R$ ' + price + ', pode comprar!')
+}
+
+showProduct('camisa', 15)
+
+const showproduct = (product,price) =>{
+    console.log(`O valor de ${product.toUpperCase()} é R$ ${Math.round(price)}, pode comprar!`)
+}
+
+showproduct('camisa', 15.6)
+
+// object short syntax
+
+const nameProduct = 'camisa'
+const price = 20
+
+const product = {
+    name: nameProduct,
+    price, // when the name of an atribute is equal to the variable relative, this type of instance is possible 
+    inStock: true
+}
+
+console.log(product)
+
+
