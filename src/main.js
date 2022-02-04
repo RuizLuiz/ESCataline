@@ -108,3 +108,80 @@ const product = {
 console.log(product)
 
 
+//Destructuring
+
+const fruits = ['laranja', 'morango', 'maca']
+
+const [a, b, c]  = fruits
+const [d, , e] = fruits
+
+console.log(a, b, c)
+console.log(d, e)
+
+const person = {
+    firstName: 'Luiz',
+    secondName: 'Osmar',
+    age: 23,
+    address: { 
+        city: 'Manaus',
+        region: 'AM'
+    }
+}
+
+const { firstName, secondName, address: { city } } = person
+
+console.log(firstName, secondName, city)
+
+const showFullName = ({ firstName, secondName}) => {
+    console.log(`${person.firstName} ${person.secondName}`)
+} 
+
+showFullName(person)
+
+// rest 
+
+const numbers_ = [1, 2, 3, 4, 5]
+
+const [first, second, ...rest] = numbers_
+
+console.log(rest)
+
+const person_ = {
+    name_: 'Luiz',
+    age: 23,
+    height: 1.73,
+    company: 'NCR'
+}
+const { name_, ...resto } = person_
+
+console.log(name_)
+console.log(resto)
+
+const sum = (...params) => {
+    return params.reduce((total, next) => total + next)
+}
+
+console.log(sum(5, 5, 10, 10))
+
+// spread
+
+const numbers1 = [1, 2, 3, 4, 5]
+const numbers2 = [5, 6, 7, 8, 9, 10]
+
+const numbersSpreaded = [...numbers1, ...numbers2]
+
+console.log(numbersSpreaded)
+
+const personAgain = {
+    name_: 'Luiz',
+    age: 23,
+    height: 1.73,
+    company: 'NCR'
+}
+
+const person1 = {
+    ...person,
+    company: 'google'
+}
+
+console.log(person1)
