@@ -1,176 +1,191 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var numbers = [1, 2, 3, 4, 5];
-numbers.forEach(function (number, index) {
-  numbers[index] = number + 1;
-});
-console.log(numbers);
-var newNumbers = numbers.map(function (number) {
-  return number + 1;
-});
-console.log(newNumbers);
-var total = numbers.reduce(function (total, next) {
-  return total + next;
-});
-console.log(total); // finish propertis with numbers
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-var todos = [{
-  text: 'lavar a louça',
-  done: false
-}, {
-  text: 'apanhar lixo',
-  done: true
-}, {
-  text: 'dobrar roupa',
-  done: true
-}];
-var doneTodos = todos.filter(function (todo) {
-  return todo.done;
-});
-console.log(doneTodos);
-var donetodos = todos.filter(function (todo) {
-  return todo.text === 'dobrar roupa';
-});
-console.log(donetodos); //arrow function in line
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
 
-var doneTodoArrow = todos.filter(function (todo) {
-  return todo.done;
-});
-console.log(doneTodoArrow);
-var find = todos.find(function (todo) {
-  return todo.text === 'dobrar roupa';
-});
-console.log(find);
-var index = todos.findIndex(function (todo) {
-  return todo.text === 'apanhar lixo';
-});
-console.log(index); // finish propertis with todos
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var cars = ['fusca', 'civic', 'hb20'];
-var hasFusca = cars.some(function (car) {
-  return car === 'fusca';
-});
-console.log(hasFusca); // default value for a function
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-function sayHello() {
-  var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'fulano';
-  console.log('Olá ' + name);
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+// constructor function
+function Car(brand, price) {
+  this.brand = brand;
+  this.price = price;
 }
 
-sayHello();
+var civic = new Car('honda', 130);
+var hb20 = new Car('hyundai', 80);
+console.log(civic);
+console.log(hb20); //classes
 
-var sayhello = function sayhello() {
-  var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'fulano';
-  return console.log('Olá ' + name);
-};
+var Cars = /*#__PURE__*/function () {
+  function Cars(brand) {
+    var price = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
-sayhello(); // Template string
+    _classCallCheck(this, Cars);
 
-var showProduct = function showProduct(product, price) {
-  console.log('O valor de ' + product + ' é R$ ' + price + ', pode comprar!');
-};
-
-showProduct('camisa', 15);
-
-var showproduct = function showproduct(product, price) {
-  console.log("O valor de ".concat(product.toUpperCase(), " \xE9 R$ ").concat(Math.round(price), ", pode comprar!"));
-};
-
-showproduct('camisa', 15.6); // object short syntax
-
-var nameProduct = 'camisa';
-var price = 20;
-var product = {
-  name: nameProduct,
-  price: price,
-  // when the name of an atribute is equal to the variable relative, this type of instance is possible 
-  inStock: true
-};
-console.log(product); //Destructuring
-
-var fruits = ['laranja', 'morango', 'maca'];
-var a = fruits[0],
-    b = fruits[1],
-    c = fruits[2];
-var d = fruits[0],
-    e = fruits[2];
-console.log(a, b, c);
-console.log(d, e);
-var person = {
-  firstName: 'Luiz',
-  secondName: 'Osmar',
-  age: 23,
-  address: {
-    city: 'Manaus',
-    region: 'AM'
-  }
-};
-var firstName = person.firstName,
-    secondName = person.secondName,
-    city = person.address.city;
-console.log(firstName, secondName, city);
-
-var showFullName = function showFullName(_ref) {
-  var firstName = _ref.firstName,
-      secondName = _ref.secondName;
-  console.log("".concat(person.firstName, " ").concat(person.secondName));
-};
-
-showFullName(person); // rest 
-
-var numbers_ = [1, 2, 3, 4, 5];
-var first = numbers_[0],
-    second = numbers_[1],
-    rest = numbers_.slice(2);
-console.log(rest);
-var person_ = {
-  name_: 'Luiz',
-  age: 23,
-  height: 1.73,
-  company: 'NCR'
-};
-
-var name_ = person_.name_,
-    resto = _objectWithoutProperties(person_, ["name_"]);
-
-console.log(name_);
-console.log(resto);
-
-var sum = function sum() {
-  for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
-    params[_key] = arguments[_key];
+    this.price = price;
+    this.brand = brand;
   }
 
-  return params.reduce(function (total, next) {
-    return total + next;
-  });
-};
+  _createClass(Cars, [{
+    key: "run",
+    value: function run() {
+      console.log('correr');
+    }
+  }]);
 
-console.log(sum(5, 5, 10, 10)); // spread
+  return Cars;
+}();
 
-var numbers1 = [1, 2, 3, 4, 5];
-var numbers2 = [5, 6, 7, 8, 9, 10];
-var numbersSpreaded = [].concat(numbers1, numbers2);
-console.log(numbersSpreaded);
-var personAgain = {
-  name_: 'Luiz',
-  age: 23,
-  height: 1.73,
-  company: 'NCR'
-};
+var civics = new Cars('honda');
+console.log(civics.brand);
+console.log(civics.price);
+civics.run(); // get and set
 
-var person1 = _objectSpread(_objectSpread({}, person), {}, {
-  company: 'google'
-});
+var Person = /*#__PURE__*/function () {
+  function Person(name) {
+    _classCallCheck(this, Person);
 
-console.log(person1);
+    this._name = name;
+  }
+
+  _createClass(Person, [{
+    key: "name",
+    get: function get() {
+      return this._name;
+    },
+    set: function set(newName) {
+      this._name = newName;
+    }
+  }]);
+
+  return Person;
+}();
+
+var person = new Person('Luiz Ruiz');
+console.log(person.name);
+person.name = 'Cunha Augusto';
+console.log(person.name); //static methods
+
+var Calculator = /*#__PURE__*/function () {
+  function Calculator() {
+    _classCallCheck(this, Calculator);
+  }
+
+  _createClass(Calculator, null, [{
+    key: "sum",
+    value: function sum(a, b) {
+      return a + b;
+    }
+  }]);
+
+  return Calculator;
+}();
+
+console.log(Calculator.sum(10, 5));
+
+var Persons = /*#__PURE__*/function () {
+  function Persons(firstName, secondName) {
+    _classCallCheck(this, Persons);
+
+    this.firstName = firstName;
+    this.secondName = secondName;
+  }
+
+  _createClass(Persons, [{
+    key: "fullName",
+    get: function get() {
+      return Persons.joinNames(this.firstName, this.secondName);
+    }
+  }], [{
+    key: "joinNames",
+    value: function joinNames(firstName, secondName) {
+      return "".concat(firstName, " ").concat(secondName);
+    }
+  }]);
+
+  return Persons;
+}();
+
+var persons = new Persons('Luiz', 'Osmar');
+console.log(persons.fullName); //heritage
+
+var Veiculo = /*#__PURE__*/function () {
+  function Veiculo(rodas) {
+    _classCallCheck(this, Veiculo);
+
+    this.rodas = rodas;
+  }
+
+  _createClass(Veiculo, [{
+    key: "acelerar",
+    value: function acelerar() {
+      console.log('acelerou');
+    }
+  }]);
+
+  return Veiculo;
+}();
+
+var Moto = /*#__PURE__*/function (_Veiculo) {
+  _inherits(Moto, _Veiculo);
+
+  var _super = _createSuper(Moto);
+
+  function Moto(rodas, capacete) {
+    var _this;
+
+    _classCallCheck(this, Moto);
+
+    _this = _super.call(this, rodas); //new Veiculo(2)
+
+    _this.capacete = capacete;
+    return _this;
+  }
+
+  _createClass(Moto, [{
+    key: "empinar",
+    value: function empinar() {
+      console.log("empinou com ".concat(this.rodas, " rodas"));
+    }
+  }, {
+    key: "acelerar",
+    value: function acelerar() {
+      _get(_getPrototypeOf(Moto.prototype), "acelerar", this).call(this);
+
+      console.log('acelerou muito'); // this overrides the old method
+    }
+  }, {
+    key: "taUsandoCapacete",
+    value: function taUsandoCapacete() {
+      console.log(this.capacete);
+    }
+  }]);
+
+  return Moto;
+}(Veiculo);
+
+var bross = new Moto(2, true);
+bross.empinar();
+bross.acelerar();
+bross.taUsandoCapacete();

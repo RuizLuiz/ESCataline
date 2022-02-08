@@ -1,187 +1,127 @@
-const numbers = [1,2,3,4,5]
+// constructor function
 
-numbers.forEach(function (number, index) {
-    numbers[index] = number + 1
-})
-
-console.log(numbers)
-
-
-const newNumbers = numbers.map(function(number){
-    return number + 1
-
-})
-
-console.log(newNumbers)
-
-const total = numbers.reduce(function (total,next){
-    return total + next
-})
-
-console.log(total)
-
-// finish propertis with numbers
-
-const todos = [
-    { text : 'lavar a louça', done: false},
-    { text : 'apanhar lixo', done: true},
-    { text : 'dobrar roupa', done: true},
-]
-
-const doneTodos = todos.filter(function (todo){
-    return todo.done
-})
-
-console.log(doneTodos)
-
-const donetodos = todos.filter(function (todo){
-    return todo.text === 'dobrar roupa'
-})
-
-console.log(donetodos)
-
-//arrow function in line
-
-const doneTodoArrow = todos.filter((todo) => todo.done)
-
-console.log(doneTodoArrow)
-
-const find = todos.find(function (todo) {
-    return todo.text === 'dobrar roupa'
-})
-
-console.log(find)
-
-const index = todos.findIndex(function(todo) {
-    return todo.text === 'apanhar lixo'
-})
-
-console.log(index)
-
-// finish propertis with todos
-
-const cars = ['fusca', 'civic', 'hb20']
-
-const hasFusca = cars.some(function (car){
-    return car === 'fusca'
-})
-
-console.log(hasFusca)
-
-// default value for a function
-
-function sayHello(name = 'fulano'){
-    console.log('Olá ' + name )
+function Car(brand,price){
+    this.brand = brand
+    this.price = price
 }
 
-sayHello()
+const civic = new Car('honda', 130)
+const hb20 = new Car('hyundai', 80)
 
-const sayhello = (name = 'fulano') => console.log('Olá ' + name)
+console.log(civic)
+console.log(hb20)
 
-sayhello()
+//classes
 
-// Template string
+class Cars{
+    constructor(brand,price = 10){
+        this.price = price
+        this.brand = brand
+    }
 
-const showProduct = (product,price) =>{
-    console.log('O valor de ' + product + ' é R$ ' + price + ', pode comprar!')
-}
-
-showProduct('camisa', 15)
-
-const showproduct = (product,price) =>{
-    console.log(`O valor de ${product.toUpperCase()} é R$ ${Math.round(price)}, pode comprar!`)
-}
-
-showproduct('camisa', 15.6)
-
-// object short syntax
-
-const nameProduct = 'camisa'
-const price = 20
-
-const product = {
-    name: nameProduct,
-    price, // when the name of an atribute is equal to the variable relative, this type of instance is possible 
-    inStock: true
-}
-
-console.log(product)
-
-
-//Destructuring
-
-const fruits = ['laranja', 'morango', 'maca']
-
-const [a, b, c]  = fruits
-const [d, , e] = fruits
-
-console.log(a, b, c)
-console.log(d, e)
-
-const person = {
-    firstName: 'Luiz',
-    secondName: 'Osmar',
-    age: 23,
-    address: { 
-        city: 'Manaus',
-        region: 'AM'
+    run(){
+        console.log('correr')
     }
 }
 
-const { firstName, secondName, address: { city } } = person
+const civics = new Cars('honda')
 
-console.log(firstName, secondName, city)
+console.log(civics.brand)
+console.log(civics.price)
 
-const showFullName = ({ firstName, secondName}) => {
-    console.log(`${person.firstName} ${person.secondName}`)
-} 
+civics.run()
 
-showFullName(person)
+// get and set
 
-// rest 
+class Person {
+    constructor(name) {
+        this._name = name
+    }
 
-const numbers_ = [1, 2, 3, 4, 5]
+    get name(){
+        return this._name
+    }
 
-const [first, second, ...rest] = numbers_
-
-console.log(rest)
-
-const person_ = {
-    name_: 'Luiz',
-    age: 23,
-    height: 1.73,
-    company: 'NCR'
-}
-const { name_, ...resto } = person_
-
-console.log(name_)
-console.log(resto)
-
-const sum = (...params) => {
-    return params.reduce((total, next) => total + next)
+    set name(newName){
+        this._name = newName
+    }
 }
 
-console.log(sum(5, 5, 10, 10))
+const person = new Person ('Luiz Ruiz')
 
-// spread
+console.log(person.name)
 
-const numbers1 = [1, 2, 3, 4, 5]
-const numbers2 = [5, 6, 7, 8, 9, 10]
+person.name = 'Cunha Augusto'
 
-const numbersSpreaded = [...numbers1, ...numbers2]
+console.log(person.name)
 
-console.log(numbersSpreaded)
+//static methods
 
-const personAgain = {
-    name_: 'Luiz',
-    age: 23,
-    height: 1.73,
-    company: 'NCR'
+class Calculator {
+    static sum(a, b){
+        return a + b
+    }
 }
 
-const person1 = {
-    ...person,
-    company: 'google'
+
+console.log(Calculator.sum(10, 5))
+
+class Persons {
+    constructor(firstName, secondName){
+        this.firstName = firstName
+        this.secondName = secondName
+    }
+
+    get fullName(){
+        return Persons.joinNames(this.firstName, this.secondName)
+    }
+
+    static joinNames(firstName, secondName){
+        return `${firstName} ${secondName}`
+    }
 }
 
-console.log(person1)
+const persons = new Persons('Luiz', 'Osmar')
+
+console.log(persons.fullName)
+
+//heritage
+
+class Veiculo {
+    constructor(rodas) {
+        this.rodas = rodas
+    }
+
+    acelerar() {
+        console.log('acelerou')
+    }
+}
+
+class Moto extends Veiculo{
+    constructor(rodas,capacete) {
+        super(rodas) //new Veiculo(2)
+        this.capacete = capacete
+    }
+    empinar() { 
+        console.log(`empinou com ${this.rodas} rodas`)
+    }
+
+    acelerar() {
+        super.acelerar()
+        console.log('acelerou muito') // this overrides the old method
+    }
+
+    taUsandoCapacete() {
+        console.log(this.capacete)
+    }
+}
+
+const bross = new Moto(2, true)
+
+bross.empinar()
+
+bross.acelerar()
+
+bross.taUsandoCapacete()
+
+
